@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>🦁 회원가입</title>
 </head>
 <body>
-    
+    <div>
+        <header>
+            <img src="./images/숙멋사로고명 1.svg" />
+            <h2>회원가입 안내 문구</h2>
+        </header>
+        <form name="signup" method="post">
+            <section>
+                <span>이름</span>
+                <input name="first_name" type="text" placeholder="김사자" required/>
+            </section>
+            <section>
+                <span>아이디</span>
+                <input name="username" type="text" placeholder="아이디를 입력해 주세요." required/>
+            </section>
+            <section>
+                <span>비밀번호</span>
+                <input name="password1" type="password" placeholder="비밀번호를 입력해 주세요." required/>
+            </section>
+            <section>
+                <span>비밀번호 확인</span>
+                <input name="password2" type="password" placeholder="비밀번호 확인인" required/>
+            </section>
+            <button type="submit">회원가입</button>
+        </form>
+    </div>
 </body>
 </html>
