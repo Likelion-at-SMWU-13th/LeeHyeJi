@@ -1,0 +1,98 @@
+@font-face {
+    font-family: 'YiSunShinDotumM';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {
+    background-color: #1c1c1c;
+    font-family: "YiSunShinDotumM";
+  }
+
+/* 헤더 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B9C2F0;
+    padding: 16px 60px;
+  }
+ 
+/* 메인 컨테이너 */
+.container {
+    display: flex;
+    padding: 40px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+/* 프로필 섹션 */
+.profile-section {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .profile-section img {
+    width: 300px;
+    height: 300px;
+    border-radius: 240px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+    border: 1px solid #97AFE3;
+  }
+  
+  .profile-section p {
+    margin-top: 25px;
+    color: #fff;
+    font-size: 22px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+  }
+
+  /* 폼 섹션 */
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    margin-right: 50px;
+  }
+  
+  /* 입력 줄 */
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .row.full-width {
+    flex-direction: column;
+  }
+  
+  /* 라벨과 input */
+  label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: #ccc;
+    font-size: 18px;
+  }
+  
+  input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
+    font-family: "YiSunShin Dotum M";
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #97AFE3;
+    border-radius: 10px;
+    font-size: 22px;
+    line-height: normal;
+    font-weight: 400;
+  }
