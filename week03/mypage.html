@@ -38,29 +38,36 @@
                     <label>이름 <input type="text" value="이혜지"></label>
                     <label>닉네임 <input type="text" value="혜쥐"></label>
                 </div>
-                <div class="row">
-                    <label><input type="radio" name="role" value="운영진"> 운영진</label>
-                    <label><input type="radio" name="role" value="아기사자" checked> 아기사자</label>
+                <div class="row align-center">
+                    <div class="radio-group">
+                      <label class="radio-label">
+                        <input type="radio" name="role" value="운영진"> <span>운영진</span>
+                      </label>
+                      <label class="radio-label">
+                        <input type="radio" name="role" value="아기사자" checked> <span>아기사자</span>
+                      </label>
+                    </div>
                     <label>트랙
-                        <label>
-                            <select>
-                                <option>기획/디자인</option>
-                                <option>프론트엔드</option>
-                                <option selected>백엔드</option>
-                            </select>
-                        </label>
+                      <div class="select-wrapper">
+                        <select>
+                          <option>기획/디자인</option>
+                          <option>프론트엔드</option>
+                          <option selected>백엔드</option>
+                        </select>
+                      </div>
                     </label>
-                </div>
+                  </div>
                 <div class="row">
                     <label>전공 <input type="text" value="IT공학전공"></label>
                     <label>mbti
+                        <div class="select-wrapper">
                         <select>
-                            <option disabled selected>mbti</option>
                             <option>ISTJ</option><option>ISFJ</option><option>INFJ</option><option>INTJ</option>
                             <option>ISTP</option><option>ISFP</option><option selected>INFP</option><option>INTP</option>
                             <option>ESTP</option><option>ESFP</option><option>ENFP</option><option>ENTP</option>
                             <option>ESTJ</option><option>ESFJ</option><option>ENFJ</option><option>ENTJ</option>
                         </select>
+                        </div>
                     </label>
                 </div>
                 <div class="row">
