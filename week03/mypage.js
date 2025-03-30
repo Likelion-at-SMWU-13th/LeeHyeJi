@@ -1,4 +1,3 @@
-// 요소 선택
 const fixBtn = document.getElementById("fixBtn");
 const editButtons = document.getElementById("editButtons");
 const applyBtn = document.getElementById("applyBtn");
@@ -55,7 +54,7 @@ fixBtn.addEventListener("click", () => {
 // 적용 버튼 클릭 시
 applyBtn.addEventListener("click", () => {
     const phoneInput = Array.from(inputs).find(input =>
-        input.value.replace(/[^0-9]/g, "").length === 11 // 숫자 11자리
+        input.value.replace(/[^0-9]/g, "").length === 11
       );
       
       if (!phoneInput || !/^010\d{8}$/.test(phoneInput.value)) {
