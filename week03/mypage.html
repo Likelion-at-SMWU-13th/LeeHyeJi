@@ -39,12 +39,29 @@
                     <label>닉네임 <input type="text" value="혜쥐"></label>
                 </div>
                 <div class="row">
-                    <label>운영진/아기사자 <input type="text" value="아기사자"></label>
-                    <label>트랙 <input type="text" value="백엔드"></label>
+                    <label><input type="radio" name="role" value="운영진"> 운영진</label>
+                    <label><input type="radio" name="role" value="아기사자" checked> 아기사자</label>
+                    <label>트랙
+                        <label>
+                            <select>
+                                <option>기획/디자인</option>
+                                <option>프론트엔드</option>
+                                <option selected>백엔드</option>
+                            </select>
+                        </label>
+                    </label>
                 </div>
                 <div class="row">
                     <label>전공 <input type="text" value="IT공학전공"></label>
-                    <label>mbti <input type="text" value="INFP"></label>
+                    <label>mbti
+                        <select>
+                            <option disabled selected>mbti</option>
+                            <option>ISTJ</option><option>ISFJ</option><option>INFJ</option><option>INTJ</option>
+                            <option>ISTP</option><option>ISFP</option><option selected>INFP</option><option>INTP</option>
+                            <option>ESTP</option><option>ESFP</option><option>ENFP</option><option>ENTP</option>
+                            <option>ESTJ</option><option>ESFJ</option><option>ENFJ</option><option>ENTJ</option>
+                        </select>
+                    </label>
                 </div>
                 <div class="row">
                     <label>전화번호 <input type="text" value="01093298147"></label>
@@ -55,6 +72,14 @@
                 </div>
             </section>
         </main>
+        <button class="fix-button" id="fixBtn">
+            <img src="./images/fix.svg" alt="수정하기">
+        </button>
+        <div class="edit-buttons hidden" id="editButtons">
+            <button id="applyBtn">적용</button>
+            <button id="cancelBtn">취소</button>
+        </div>
     </div>
+    <script src="mypage.js"></script>
 </body>
 </html>
