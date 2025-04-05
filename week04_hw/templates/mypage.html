@@ -1,0 +1,94 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
+    <title>🦁 마이페이지</title>
+</head>
+<body>
+    <div>
+        <header>
+            <div class="logo">
+                <img src="{% static './images/숙멋사로고 1.svg' %}" height="35" style="margin-right: 7px;" />
+                <img src="{% static './images/숙멋사로고명 2.svg' %}" height="30" style="margin-bottom: 2px;"/>
+            </div>
+            <nav class="menu">
+                <a href="{% url 'login' %}"><img src="{% static './images/home.svg' %}" height="30" style="margin-right: 15px;"></a>
+                <a href="{% url 'mypage' %}"><img src="{% static './images/mypage2.svg' %}" height="30"></a>
+            </nav>
+        </header>
+        <main class="container">
+            <section class="profile-section">
+                <img id="profileImgae" src="{% static './images/profile.svg' %}">
+                <div class="social-icons">
+                    <a href="https://github.com/haejee0514" target="_blank">
+                      <img src="{% static './images/github.svg' %}" alt="GitHub">
+                    </a>
+                    <a href="https://instagram.com/hj._.o01" target="_blank">
+                      <img src="{% static './images/instagram.svg' %}" alt="Instagram">
+                    </a>
+                    <a href="mailto:haejee0514@sookmyung.ac.kr">
+                      <img src="{% static './images/mail.svg' %}" alt="Email">
+                    </a>
+                  </div>
+            </section>
+            <section class="form-section">
+                <div class="row">
+                    <label>이름 <input type="text" value="이혜지"></label>
+                    <label>닉네임 <input type="text" value="혜쥐"></label>
+                </div>
+                <div class="row align-center">
+                    <div class="radio-group">
+                      <label class="radio-label">
+                        <input type="radio" name="role" value="운영진"> <span>운영진</span>
+                      </label>
+                      <label class="radio-label">
+                        <input type="radio" name="role" value="아기사자" checked> <span>아기사자</span>
+                      </label>
+                    </div>
+                    <label>트랙
+                      <div class="select-wrapper">
+                        <select>
+                          <option>기획/디자인</option>
+                          <option>프론트엔드</option>
+                          <option selected>백엔드</option>
+                        </select>
+                      </div>
+                    </label>
+                  </div>
+                <div class="row">
+                    <label>전공 <input type="text" value="IT공학전공"></label>
+                    <label>mbti
+                        <div class="select-wrapper">
+                        <select>
+                            <option>ISTJ</option><option>ISFJ</option><option>INFJ</option><option>INTJ</option>
+                            <option>ISTP</option><option>ISFP</option><option selected>INFP</option><option>INTP</option>
+                            <option>ESTP</option><option>ESFP</option><option>ENFP</option><option>ENTP</option>
+                            <option>ESTJ</option><option>ESFJ</option><option>ENFJ</option><option>ENTJ</option>
+                        </select>
+                        </div>
+                    </label>
+                </div>
+                <div class="row">
+                    <label>전화번호 <input type="text" value="01093298147"></label>
+                    <label>인스타그램 <input type="text" value="hj._.o01"></label>
+                </div>
+                <div class="row full-width">
+                    <label>상태메시지 <input type="text" value="멋사 최공~~💖🎉"></label>
+                </div>
+            </section>
+        </main>
+        <button class="fix-button" id="fixBtn">
+            <img src="{% static './images/fix.svg' %}" alt="수정하기">
+        </button>
+        <div class="edit-buttons hidden" id="editButtons">
+            <button id="applyBtn">적용</button>
+            <button id="cancelBtn">취소</button>
+        </div>
+    </div>
+    <script src="{% static 'js/mypage.js' %}"></script>
+</body>
+</html>
