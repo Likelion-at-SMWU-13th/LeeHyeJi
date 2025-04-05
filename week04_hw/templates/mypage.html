@@ -1,35 +1,37 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="mypage.css" />
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
     <title>🦁 마이페이지</title>
 </head>
 <body>
     <div>
         <header>
             <div class="logo">
-                <img src="./images/숙멋사로고 1.svg" height="35" style="margin-right: 7px;" />
-                <img src="./images/숙멋사로고명 2.svg" height="30" style="margin-bottom: 2px;"/>
+                <img src="{% static './images/숙멋사로고 1.svg' %}" height="35" style="margin-right: 7px;" />
+                <img src="{% static './images/숙멋사로고명 2.svg' %}" height="30" style="margin-bottom: 2px;"/>
             </div>
             <nav class="menu">
-                <a href="login.html"><img src="./images/home.svg" height="30" style="margin-right: 15px;"></a>
-                <a href="mypage.html"><img src="./images/mypage2.svg" height="30"></a>
+                <a href="{% url 'login' %}"><img src="{% static './images/home.svg' %}" height="30" style="margin-right: 15px;"></a>
+                <a href="{% url 'mypage' %}"><img src="{% static './images/mypage2.svg' %}" height="30"></a>
             </nav>
         </header>
         <main class="container">
             <section class="profile-section">
-                <img id="profileImgae" src="./images/profile.svg">
+                <img id="profileImgae" src="{% static './images/profile.svg' %}">
                 <div class="social-icons">
                     <a href="https://github.com/haejee0514" target="_blank">
-                      <img src="./images/github.svg" alt="GitHub">
+                      <img src="{% static './images/github.svg' %}" alt="GitHub">
                     </a>
                     <a href="https://instagram.com/hj._.o01" target="_blank">
-                      <img src="./images/instagram.svg" alt="Instagram">
+                      <img src="{% static './images/instagram.svg' %}" alt="Instagram">
                     </a>
                     <a href="mailto:haejee0514@sookmyung.ac.kr">
-                      <img src="./images/mail.svg" alt="Email">
+                      <img src="{% static './images/mail.svg' %}" alt="Email">
                     </a>
                   </div>
             </section>
@@ -80,13 +82,13 @@
             </section>
         </main>
         <button class="fix-button" id="fixBtn">
-            <img src="./images/fix.svg" alt="수정하기">
+            <img src="{% static './images/fix.svg' %}" alt="수정하기">
         </button>
         <div class="edit-buttons hidden" id="editButtons">
             <button id="applyBtn">적용</button>
             <button id="cancelBtn">취소</button>
         </div>
     </div>
-    <script src="mypage.js"></script>
+    <script src="{% static 'js/mypage.js' %}"></script>
 </body>
 </html>

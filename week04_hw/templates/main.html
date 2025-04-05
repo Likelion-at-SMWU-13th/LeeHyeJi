@@ -14,7 +14,7 @@
         <img id="logo_sookmutsa" src="{% static 'images/숙멋사로고명 1.svg' %}"
     /></a>
     <nav>
-        <a href="mypage.html"><img id="mypage" src="{% static 'images/mypage.svg' %}" /></a>
+        <a href="{% url 'mypage' %}"><img id="mypage" src="{% static 'images/mypage.svg' %}" /></a>
         <a href="{% url 'logout' %}"><img id="logout" src="{% static 'images/logout.svg' %}" /></a>
     </nav>
     </header>
