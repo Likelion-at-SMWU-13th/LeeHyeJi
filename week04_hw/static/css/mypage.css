@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'YiSunShinDotumM';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/YiSunShinDotumM.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  body {
+    background-color: #1c1c1c;
+    font-family: "YiSunShinDotumM";
+  }
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #B9C2F0;
+    padding: 16px 60px;
+  }
+ 
+.container {
+    display: flex;
+    padding: 40px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+.profile-section {
+    text-align: center;
+    margin-top: 25px;
+  }
+  
+  .profile-section #profileImage {
+    width: 300px;
+    height: 300px;
+    flex-shrink: 0;
+    aspect-ratio: 1/1;
+  }
+
+  .social-icons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+  .social-icons img {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .social-icons img:hover {
+    transform: scale(1.15);
+  }
+
+.form-section {
+    flex: 1;
+    min-width: 300px;
+    max-width: 600px;
+    margin-right: 70px;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .row.full-width {
+    flex-direction: column;
+  }
+  
+  label {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    color: #ccc;
+    font-size: 18px;
+  }
+  
+  input[type="text"] {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 15px;
+    font-family: "YiSunShinDotumM";
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #97AFE3;
+    border-radius: 10px;
+    font-size: 22px;
+    line-height: normal;
+    font-weight: 400;
+  }
+
+  .fix-button {
+    position: fixed;
+    bottom: 70px;
+    right: 130px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .fix-button img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .edit-buttons {
+    position: fixed;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 50px;
+    z-index: 10;
+  }
+  
+  .edit-buttons button {
+    padding: 10px 20px;
+    font-size: 17px;
+    background-color: #97AFE3;
+    font-family: "YiSunShinDotumM";
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+  }
+  
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex: 1;
+    margin-top: 10px;
+    margin-right: 50px;
+  }
+  
+  .radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 18px;
+    color: #ccc;
+  }
+
+.select-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+  }
+  
+  .select-wrapper select {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    margin-right: 50px;
+    padding: 13px 15px;
+    font-family: "YiSunShinDotumM";
+    background-color: #1a1a1a;
+    color: #fff;
+    border: 1px solid #97AFE3;
+    border-radius: 10px;
+    font-size: 22px;
+    line-height: normal;
+    font-weight: 400;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="%2397AFE3" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 18px;
+  }
+
+  select.readonly-select {
+    opacity: 1;
+    background-color: #1a1a1a;
+    color: #fff;
+  }
+  .hidden {
+    display: none;
+  }
