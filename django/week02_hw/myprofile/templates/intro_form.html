@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자기소개 폼</title>
+</head>
+<body>
+    <h1>자기소개</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        <label>이름:</label>
+        <input type="text" name="name"><br>
+        <label>나이:</label>
+        <input type="number" name="age"><br>
+        <label>학교:</label>
+        <input type="text" name="univ"><br>
+        <label>트랙:</label>
+        <input type="text" name="track"><br>
+        <label>MBTI:</label>
+        <input type="text" name="mbti"><br>
+        <input type="submit" value="입력">
+    </form>
+</body>
+</html>
