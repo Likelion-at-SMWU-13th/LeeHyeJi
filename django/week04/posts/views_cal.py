@@ -25,3 +25,29 @@ def calculator_query(request):
     }
 
     return Response(data)
+
+@api_view(['POST'])
+def calculator_body(request):
+    data = request.data
+    num1 = data.get('num1', 0)
+    num2 = data.get('num2', 0)
+    op=data.get('op')
+
+    if op == '+':
+        result = int(num1) + int(num2)
+    elif op == '-':
+        result = int(num1) - int(num2)
+    elif op == '*':
+        result = int(num1) * int(num2)
+    elif op == '/':
+        result = int(num1) / int(num2)
+    else:
+        result = 0
+
+    # 사용된 연산자와 결과를 JSON 형식 {키 : 값}으로 반환
+    data = {
+        'op' : op,
+        'result' : result
+    }
+
+    return Response(data)
