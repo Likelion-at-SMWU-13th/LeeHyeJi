@@ -5,7 +5,7 @@ from posts.views_cal import calculator_query, calculator_body
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('posts.urls', namespace='posts')),
-    path('calculater/query', calculator_query),
-    path('calculater/body', calculator_body),
-    
+    path('calculator/query', calculator_query),
+    path('calculator/body', calculator_body),
+    path('users/', include('users.urls', namespace='users')),
 ]
