@@ -5,6 +5,6 @@ from .models import Post
 from .serializers import PostModelSerializer
 # Create your views here.
 
-class PostListView(ModelViewSet):
+class PostModelViewSet(ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostModelSerializer
