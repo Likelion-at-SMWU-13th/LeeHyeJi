@@ -77,4 +77,20 @@ public class StudentController {
                 .body("해당 studentID를 가진 학생을 찾을 수 없습니다.");
     }
 
+    // 학생 삭제
+    @DeleteMapping("/{studentID}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long studentID) {
+        Optional<StudentDTO> target = studentDTOList.stream()
+                .filter(s -> s.getStudentID().equals(studentID))
+                .findFirst();
+
+        if (target.isPresent()) {
+            studentDTOList.remove(target.get());
+            return ResponseEntity.ok("학생이 삭제되었습니다.");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("해당 studentID를 가진 학생을 찾을 수 없습니다.");
+        }
+    }
+
 }
