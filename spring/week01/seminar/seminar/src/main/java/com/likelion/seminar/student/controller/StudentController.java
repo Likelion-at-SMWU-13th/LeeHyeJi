@@ -2,6 +2,8 @@ package com.likelion.seminar.student.controller;
 
 import com.likelion.seminar.student.dto.StudentDTO;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,21 +17,19 @@ public class StudentController {
     private final List<StudentDTO> studentDTOList;
 
     // 새로운 학생 등록
-    @PostMapping()
-    public String createStudent(@RequestBody StudentDTO studentDTO){
-        // 이미 같은 studentID를 가진 학생이 있는지 확인
-        Optional<StudentDTO> existing = studentDTOList.stream()
-                .filter(s -> s.getStudentID().equals(studentDTO.getStudentID()))
-                .findFirst();
+    @PostMapping
+    public ResponseEntity<String> createStudent(@RequestBody StudentDTO studentDTO) {
+        boolean exists = studentDTOList.stream()
+                .anyMatch(s -> s.getStudentID().equals(studentDTO.getStudentID()));
 
-        // 중복 studentID가 있으면 등록 불가
-        if(existing.isPresent()){
-            return "이미 존재하는 studentID 입니다.";
+        if (exists) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body("이미 존재하는 studentID 입니다.");
         }
 
-        // 중복이 아니라면 리스트에 추가
         studentDTOList.add(studentDTO);
-        return "학생이 추가되었습니다.";
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("학생이 추가되었습니다.");
     }
 
     // 전체 학생 리스트 조회
@@ -37,6 +37,21 @@ public class StudentController {
     public List<StudentDTO> getAllStudents(){
         System.out.println("전체 학생 리스트 조회");
         return this.studentDTOList;
+    }
+
+    // 단일 학생 조회
+    @GetMapping("/{studentID}")
+    public ResponseEntity<?> getStudentById(@PathVariable Long studentID) {
+        Optional<StudentDTO> student = studentDTOList.stream()
+                .filter(s -> s.getStudentID().equals(studentID))
+                .findFirst();
+
+        if (student.isPresent()) {
+            return ResponseEntity.ok(student.get()); // 200 OK
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                    .body("해당 studentID를 가진 학생을 찾을 수 없습니다."); // 404 Not Found
+        }
     }
 
 }
