@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -52,6 +53,28 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
                     .body("해당 studentID를 가진 학생을 찾을 수 없습니다."); // 404 Not Found
         }
+    }
+
+    // 학생 정보 수정
+    @PutMapping("/{studentID}")
+    public ResponseEntity<String> updateStudent(@PathVariable Long studentID, @RequestBody StudentDTO updatedStudent) {
+        for (int i = 0; i < studentDTOList.size(); i++) {
+            StudentDTO current = studentDTOList.get(i);
+
+            if (current.getStudentID().equals(studentID)) {
+                // 변경할 필드만 null 체크해서 덮어쓰기
+                String name = updatedStudent.getName() != null ? updatedStudent.getName() : current.getName();
+                LocalDate dateOfBirth = updatedStudent.getDateOfBirth() != null ? updatedStudent.getDateOfBirth() : current.getDateOfBirth();
+
+                StudentDTO newStudent = new StudentDTO(studentID, name, dateOfBirth);
+                studentDTOList.set(i, newStudent);
+
+                return ResponseEntity.ok("학생 정보가 업데이트되었습니다.");
+            }
+        }
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("해당 studentID를 가진 학생을 찾을 수 없습니다.");
     }
 
 }
