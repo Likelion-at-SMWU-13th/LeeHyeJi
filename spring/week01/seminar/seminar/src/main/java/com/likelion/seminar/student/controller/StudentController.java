@@ -32,4 +32,11 @@ public class StudentController {
         return "학생이 추가되었습니다.";
     }
 
+    // 전체 학생 리스트 조회
+    @GetMapping()
+    public List<StudentDTO> getAllStudents(){
+        System.out.println("전체 학생 리스트 조회");
+        return this.studentDTOList;
+    }
+
 }
