@@ -22,4 +22,12 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 }
