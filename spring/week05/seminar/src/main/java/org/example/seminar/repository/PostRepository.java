@@ -1,4 +1,7 @@
 package org.example.seminar.repository;
 
-public interface PostRepository {
+import org.example.seminar.entity.PostEntity;
+import org.springframework.data.repository.CrudRepository;
+
+public interface PostRepository extends CrudRepository<PostEntity, Long> {
 }
