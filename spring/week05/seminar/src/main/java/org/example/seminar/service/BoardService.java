@@ -3,6 +3,7 @@ package org.example.seminar.service;
 import org.example.seminar.dao.BoardDao;
 import org.example.seminar.dto.BoardDto;
 import org.example.seminar.entity.BoardEntity;
+import org.example.seminar.entity.PostEntity;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,15 @@ public class BoardService {
     // READ (단일)
     public BoardDto readBoard(Long id) {
         BoardEntity boardEntity = this.boardDao.readBoard(id);
+        List<Long> postIds = new ArrayList<>();
+        for (PostEntity postEntity : boardEntity.getPostEntityList()) {
+            postIds.add(postEntity.getId());
+        }
+
         return new BoardDto(
                 boardEntity.getId(),
                 boardEntity.getName(),
-                new ArrayList<>()
+                postIds
         );
     }
 
@@ -42,10 +48,16 @@ public class BoardService {
         List<BoardDto> boardDtoList = new ArrayList<>();
         while (iterator.hasNext()) {
             BoardEntity boardEntity = iterator.next();
+
+            List<Long> postIds = new ArrayList<>();
+            for (PostEntity postEntity : boardEntity.getPostEntityList()) {
+                postIds.add(postEntity.getId());
+            }
+
             boardDtoList.add(new BoardDto(
                     boardEntity.getId(),
                     boardEntity.getName(),
-                    new ArrayList<>()
+                    postIds
             ));
         }
         return boardDtoList;
