@@ -2,7 +2,9 @@ package org.example.seminar.dao;
 
 
 import org.example.seminar.dto.PostDto;
+import org.example.seminar.entity.BoardEntity;
 import org.example.seminar.entity.PostEntity;
+import org.example.seminar.repository.BoardRepository;
 import org.example.seminar.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,9 +20,11 @@ import java.util.Optional;
 public class PostDao {
     private static final Logger logger = LoggerFactory.getLogger(PostDao.class);
     private final PostRepository postRepository;
+    private final BoardRepository boardRepository;
 
-    public PostDao(@Autowired PostRepository postRepository) {
+    public PostDao(@Autowired PostRepository postRepository, @Autowired BoardRepository boardRepository) {
         this.postRepository = postRepository;
+        this.boardRepository = boardRepository;
     }
 
     public void createPost(PostDto dto){
@@ -28,7 +32,11 @@ public class PostDao {
         postEntity.setTitle(dto.getTitle());
         postEntity.setContent(dto.getContent());
         postEntity.setWriter(dto.getWriter());
-        postEntity.setBoardEntity(null);
+        Optional<BoardEntity> boardEntity = this.boardRepository.findById((long)dto.getBoardId());
+        if (boardEntity.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
+        postEntity.setBoardEntity(boardEntity.get());
 
         this.postRepository.save(postEntity);
     }
