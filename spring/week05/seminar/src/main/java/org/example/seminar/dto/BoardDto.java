@@ -15,5 +15,5 @@ import java.util.List;
 public class BoardDto {
     private Long id;
     private String name;
-    private List<PostDto> posts = new ArrayList<>();
+    private List<Long> postIds;
 }
