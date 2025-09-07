@@ -12,6 +12,11 @@ import java.util.List;
 public class ProductService {
     private final ProductRepository productRepository;
 
+    // 상품 생성
+    public Product saveProduct(Product product) {
+        return productRepository.save(product);
+    }
+
     // 가장 비싼 상품 Top10 조회
     public List<Product> findTop10ByOrderByPriceDesc() {
         return productRepository.findTop10ByOrderByPriceDesc();

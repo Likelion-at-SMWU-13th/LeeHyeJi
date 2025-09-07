@@ -13,6 +13,12 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
+    // 상품 생성
+    @PostMapping("/create")
+    public Product createProduct(@RequestBody Product product) {
+        return productService.saveProduct(product);
+    }
+
     // 가장 비싼 상품 Top10 조회
     @GetMapping("/jpa")
     public List<Product> findTop10ByOrderByPriceDesc() {
