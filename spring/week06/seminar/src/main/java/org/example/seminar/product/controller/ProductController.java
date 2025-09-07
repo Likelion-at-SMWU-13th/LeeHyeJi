@@ -19,4 +19,9 @@ public class ProductController {
         return productService.findTop10ByOrderByPriceDesc();
     }
 
+    // 가격이 2,000원 이하이고, 재고가 많은 상품 Top5 조회
+    @GetMapping("/jpql")
+    public List<Product> findTop5ByPriceAndStock(@RequestParam int price) {
+        return productService.findTop5ByPriceAndStock(price);
+    }
 }
