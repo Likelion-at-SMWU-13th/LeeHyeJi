@@ -17,4 +17,8 @@ public class ProductService {
         return productRepository.findTop10ByOrderByPriceDesc();
     }
 
+    // 가격이 2,000원 이하이고, 재고가 많은 상품 Top5 조회
+    public List<Product> findTop5ByPriceAndStock(int price) {
+        return productRepository.findTop5ByPriceAndStock(price);
+    }
 }
