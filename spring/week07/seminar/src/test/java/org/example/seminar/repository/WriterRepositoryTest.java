@@ -14,9 +14,6 @@ class WriterRepositoryTest {
     @Autowired
     WriterRepository writerRepository;
 
-    @Autowired
-    BoardRepository boardRepository;
-
     // Cascade 테스트: Writer 저장 시 Board 함께 저장
     @Test
     void cascadePersistTest() {
