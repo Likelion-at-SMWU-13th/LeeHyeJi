@@ -24,7 +24,7 @@ public class UserService {
 
         // 2. 이메일 도메인 검사
         if (!requestDTO.getEmail().endsWith("@sookmyung.ac.kr")) {
-            throw new CustomException(HttpStatus.BAD_REQUEST, "숙명대학교 이메일만 사용할 수 있습니다.");
+            throw new CustomException(HttpStatus.BAD_REQUEST, "숙명여대 이메일만 사용할 수 있습니다.");
         }
 
         // 3. User 엔티티 생성
