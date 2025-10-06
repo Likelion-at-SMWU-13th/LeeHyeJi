@@ -4,6 +4,8 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.example.seminar.dto.CustomUserDetails;
+import org.example.seminar.entity.RefreshEntity;
+import org.example.seminar.repository.RefreshRepository;
 import org.example.seminar.util.CookieUtil;
 import org.example.seminar.util.JWTUtil;
 import org.springframework.http.HttpStatus;
@@ -15,16 +17,19 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.Iterator;
 
 public class LoginFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;
     private final JWTUtil jwtUtil;
+    private final RefreshRepository refreshRepository;
 
-    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil) {
+    public LoginFilter(AuthenticationManager authenticationManager, JWTUtil jwtUtil, RefreshRepository refreshRepository) {
         this.authenticationManager = authenticationManager;
         this.jwtUtil = jwtUtil;
+        this.refreshRepository = refreshRepository;
     }
 
     @Override
@@ -44,6 +49,7 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authentication) {
+
         CustomUserDetails customUserDetails = (CustomUserDetails) authentication.getPrincipal();
         String username = customUserDetails.getUsername();
 
@@ -54,12 +60,15 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         String role = auth.getAuthority();
 
         // 토큰 생성
-        String access = jwtUtil.createJwt("access", username, role, 60 * 10 * 1000L); // Access
-        String refresh = jwtUtil.createJwt("refresh", username, role, 24 * 60 * 1000L);
+        String access = jwtUtil.createJwt("access", username, role, 60 * 10 * 1000L);
+        String refresh = jwtUtil.createJwt("refresh", username, role, 24 * 60 * 60 * 1000L);
+
+        // refresh 토큰 저장
+        addRefreshEntity(username, refresh, 86400000L);
 
         // 응답 설정
         response.setHeader("access", access);
-        response.addCookie(CookieUtil.creatCookie("refresh", refresh));
+        response.addCookie(CookieUtil.createCookie("refresh", refresh));
         response.setStatus(HttpStatus.OK.value());
     }
 
@@ -69,5 +78,15 @@ public class LoginFilter extends UsernamePasswordAuthenticationFilter {
         response.setStatus(401);
     }
 
+    private void addRefreshEntity(String username, String refresh, Long expiredMs){
+        Date date = new Date(System.currentTimeMillis() + expiredMs);
+
+        RefreshEntity refreshEntity = new RefreshEntity();
+        refreshEntity.setUsername(username);
+        refreshEntity.setRefresh(refresh);
+        refreshEntity.setExpiration(date.toString());
+
+        refreshRepository.save(refreshEntity);
+    }
 }
 
