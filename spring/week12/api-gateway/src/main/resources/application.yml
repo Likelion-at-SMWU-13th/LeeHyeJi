@@ -9,6 +9,8 @@ spring:
 services:
   customer:
     url: http://localhost:8081
+  vet:
+    url: http://localhost:8082
   monolith:
     url: http://localhost:8080
 
@@ -16,6 +18,7 @@ services:
 feature:
   toggle:
     use-customer-service: true  # true = Customer Service, false = Monolith
+    use-vet-service: true       # true = Vet Service, false = Monolith
 
 # Circuit Breaker 설정 (장애 대응)
 resilience4j:
@@ -27,6 +30,13 @@ resilience4j:
         failure-rate-threshold: 50 # 실패율 50% 초과 시 차단
         wait-duration-in-open-state: 10000 # 10초 후 재시도
         permitted-number-of-calls-in-half-open-state: 3 # 테스트 요청 3개
+
+      vet-service:
+        register-health-indicator: true
+        sliding-window-size: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10000
+        permitted-number-of-calls-in-half-open-state: 3
 
 # 로깅
 logging:

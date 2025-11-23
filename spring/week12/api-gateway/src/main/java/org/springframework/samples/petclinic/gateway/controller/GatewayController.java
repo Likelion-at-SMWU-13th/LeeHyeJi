@@ -3,6 +3,7 @@ package org.springframework.samples.petclinic.gateway.controller;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.samples.petclinic.gateway.client.CustomerServiceClient;
+import org.springframework.samples.petclinic.gateway.client.VetServiceClient;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
@@ -15,16 +16,21 @@ import java.util.Map;
 public class GatewayController {
 
     private final CustomerServiceClient customerClient;
+    private final VetServiceClient vetClient;
     private final RestTemplate monolithClient;
 
     @Value("${feature.toggle.use-customer-service}")
     private boolean useCustomerService;
 
+    @Value("${feature.toggle.use-vet-service}")
+    private boolean useVetService;
+
     @Value("${services.monolith.url}")
     private String monolithUrl;
 
-    public GatewayController(CustomerServiceClient customerClient, @Qualifier("monolithRestTemplate") RestTemplate monolithClient) {
+    public GatewayController(CustomerServiceClient customerClient, VetServiceClient vetClient,@Qualifier("monolithRestTemplate") RestTemplate monolithClient) {
         this.customerClient = customerClient;
+        this.vetClient = vetClient;
         this.monolithClient = monolithClient;
     }
 
@@ -54,11 +60,16 @@ public class GatewayController {
         }
     }
 
-    // Vet 관련 요청 (항상 Monolith)
+    // Vet 관련 요청
     @RequestMapping("/vets/**")
     public String routeVetRequests(HttpServletRequest request) {
         String path = request.getRequestURI();
-        return "redirect:" + monolithUrl + path;
+
+        if (useVetService) {
+            return "redirect:http://localhost:8082" + path;
+        } else {
+            return "redirect:" + monolithUrl + path;
+        }
     }
 
     // Visit 관련 요청 (항상 Monolith)
@@ -81,6 +92,7 @@ public class GatewayController {
         Map<String, Object> status = new HashMap<>();
         status.put("gateway", "UP");
         status.put("customerService", useCustomerService ? "ACTIVE" : "INACTIVE");
+        status.put("vetService", useVetService ? "ACTIVE" : "INACTIVE");
         status.put("monolith", "ACTIVE");
         return status;
     }
@@ -92,7 +104,7 @@ public class GatewayController {
         Map<String, String> architecture = new HashMap<>();
         architecture.put("type", "Hybrid MSA");
         architecture.put("customerService", useCustomerService ? "Microservice" : "Monolith");
-        architecture.put("vetService", "Monolith");
+        architecture.put("vetService", useVetService ? "Microservice" : "Monolith");
         architecture.put("visitService", "Monolith");
         return architecture;
     }

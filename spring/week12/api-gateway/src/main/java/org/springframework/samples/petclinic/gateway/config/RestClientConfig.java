@@ -11,11 +11,19 @@ public class RestClientConfig {
     @Value("${services.customer.url}")
     private String customerServiceUrl;
 
+    @Value("${services.vet.url}")
+    private String vetServiceUrl;
+
     @Value("${services.monolith.url}")
     private String monolithUrl;
 
     @Bean("customerRestTemplate")
     public RestTemplate customerServiceClient() {
+        return new RestTemplate();
+    }
+
+    @Bean("vetRestTemplate")
+    public RestTemplate vetServiceClient() {
         return new RestTemplate();
     }
 
