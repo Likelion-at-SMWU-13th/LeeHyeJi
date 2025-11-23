@@ -1,0 +1,11 @@
+dependencies {
+    // JMS dependencies
+    implementation 'org.apache.activemq:activemq-broker'
+    implementation 'org.apache.activemq:activemq-pool'
+    implementation 'io.hawt:hawtio-springboot:2.8.0'
+    implementation 'org.springframework.boot:spring-boot-actuator'
+}
+
+bootJar {
+    mainClass = 'org.springframework.samples.petclinic.Application'
+}

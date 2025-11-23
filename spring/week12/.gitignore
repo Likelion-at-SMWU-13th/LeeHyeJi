@@ -1,0 +1,25 @@
+# Maven
+target/
+
+# Eclipse
+.settings/
+.classpath
+.project
+.factorypath
+
+.attach_pid*
+
+# IDEA
+.idea
+*.iml
+
+# VSCode
+.vscode/
+_site/
+
+*.bak
+.DS_Store
+
+# Gradle build files
+build/
+.gradle/
